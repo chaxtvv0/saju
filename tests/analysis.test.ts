@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { calculateSaju } from '@orrery/core/saju'
 import { analyzeSaju, groupOf, elementOfGroup, yearLuck, currentDaewoon, summarizeLuck } from '../src/analysis.ts'
 import { buildReport } from '../src/report.ts'
+import { ME } from '../src/me.ts'
 
 const sample = { year: 1993, month: 3, day: 12, hour: 9, minute: 45, gender: 'M' as const }
 
@@ -51,7 +52,8 @@ describe('analyzeSaju', () => {
 })
 
 describe('고전 규칙 보정 (丁卯일 戌월 예시)', () => {
-  const result = calculateSaju({ year: 2000, month: 11, day: 5, hour: 0, minute: 38, gender: 'F' })
+  // 원국 여덟 글자만으로 본다 (생년월일시 원본은 공개 저장소에 두지 않는다)
+  const result = ME
   const a = analyzeSaju(result)
 
   it('지장간 통근과 원국의 합·충을 찾는다', () => {

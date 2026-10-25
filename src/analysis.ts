@@ -112,6 +112,11 @@ export interface NatalConflict {
   detail?: string
 }
 
+/** 해석에 필요한 최소 원국: 시·일·월·년 순서의 천간·지지 (SajuResult 도 그대로 들어간다) */
+export interface NatalPillars {
+  pillars: { pillar: { stem: string; branch: string } }[]
+}
+
 export interface PatternMatch {
   name: string
   text: string
@@ -206,7 +211,7 @@ function natalBranchRelations(branches: (string | undefined)[]) {
   return { combos, conflicts }
 }
 
-export function analyzeSaju(result: SajuResult): SajuAnalysis {
+export function analyzeSaju(result: NatalPillars): SajuAnalysis {
   const pillars = result.pillars
   const dayStem = pillars[1].pillar.stem
   const dm = STEM_INFO[dayStem]
@@ -365,7 +370,7 @@ function patternsCompletedBy(stem: string, natalStems: string[], dayStem: string
     p.dayStem === dayStem && p.needs.includes(stem) && p.needs.every(n => n === stem || natalStems.includes(n)))
 }
 
-export function summarizeLuck(ganzi: string, result: SajuResult, analysis: SajuAnalysis): LuckSummary {
+export function summarizeLuck(ganzi: string, result: NatalPillars, analysis: SajuAnalysis): LuckSummary {
   const dayStem = analysis.dayMaster.stem
   const [stem, branch] = [ganzi[0], ganzi[1]]
   const { favorable, conditional } = analysis.yongsin
@@ -486,6 +491,6 @@ export function currentDaewoon(result: SajuResult, date: Date = new Date()): Dae
 }
 
 /** 세운(연운) 요약 */
-export function yearLuck(year: number, result: SajuResult, analysis: SajuAnalysis): LuckSummary {
+export function yearLuck(year: number, result: NatalPillars, analysis: SajuAnalysis): LuckSummary {
   return summarizeLuck(getYearGanzi(year), result, analysis)
 }
