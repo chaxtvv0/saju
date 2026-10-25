@@ -11,6 +11,8 @@
 
 React + Vite 웹앱이며 서버 없이 브라우저에서 모두 계산합니다.
 
+**바로 써 보기:** https://chaxtvv0.github.io/saju/ (main에 push하면 GitHub Actions가 자동 배포)
+
 ```bash
 npm install
 npm run dev     # 개발 서버 (http://localhost:5173)
