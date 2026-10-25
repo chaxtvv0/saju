@@ -1,0 +1,273 @@
+:root {
+  --bg: #f6f1e7;
+  --surface: #fffdf8;
+  --ink: #2a2420;
+  --muted: #7a6f63;
+  --line: #e4dacb;
+  --accent: #8c2f1f;
+
+  --tree: #3f7d4e;
+  --fire: #c2412d;
+  --earth: #b8862b;
+  --metal: #8a8f98;
+  --water: #2f4a7a;
+
+  --good: #3f7d4e;
+  --caution: #b5482f;
+  --neutral: #7a6f63;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1815;
+    --surface: #25211d;
+    --ink: #eee6da;
+    --muted: #a69a8c;
+    --line: #3a342d;
+    --accent: #e0846f;
+    --tree: #6cae7c;
+    --fire: #e5735d;
+    --earth: #d9ac55;
+    --metal: #b3b8c1;
+    --water: #7d9bd1;
+    --good: #6cae7c;
+    --caution: #e5735d;
+    --neutral: #a69a8c;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+}
+
+.masthead h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2rem;
+  margin: 0;
+}
+.masthead p { color: var(--muted); margin: 4px 0 24px; }
+
+h2 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; margin: 0 0 12px; }
+h3 { font-size: 0.85rem; color: var(--muted); font-weight: 500; margin: 16px 0 8px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.results { display: grid; gap: 16px; margin-top: 16px; }
+.results > *, .grid-2 > * { min-width: 0; }
+.grid-2 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.note { color: var(--muted); font-size: 0.85rem; margin: 12px 0 0; }
+.error { color: var(--caution); }
+
+/* ── 입력 폼 ── */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 20px;
+}
+.field { display: grid; gap: 4px; font-size: 0.85rem; color: var(--muted); }
+.field input {
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.check { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; padding-bottom: 8px; }
+.segmented { border: 0; padding: 0; margin: 0; display: flex; }
+.segmented legend { font-size: 0.85rem; color: var(--muted); padding: 0; margin-bottom: 4px; }
+.segmented label {
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.segmented label:first-of-type { border-radius: 8px 0 0 8px; }
+.segmented label:last-of-type { border-radius: 0 8px 8px 0; border-left: 0; }
+.segmented label.on { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.segmented input { position: absolute; opacity: 0; pointer-events: none; }
+
+button {
+  font: inherit;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; margin-left: auto; }
+
+/* ── 원국 ── */
+.pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.pillar { display: grid; gap: 6px; text-align: center; }
+.pillar-label { font-size: 0.8rem; color: var(--muted); }
+.pillar.day .pillar-label { color: var(--accent); font-weight: 700; }
+
+.char {
+  display: grid;
+  border-radius: 10px;
+  padding: 8px 4px;
+  color: #fff;
+  background: var(--neutral);
+}
+.char.tree { background: var(--tree); }
+.char.fire { background: var(--fire); }
+.char.earth { background: var(--earth); }
+.char.metal { background: var(--metal); }
+.char.water { background: var(--water); }
+.char .sipsin { font-size: 0.75rem; opacity: 0.9; }
+.char .hanja { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; line-height: 1.2; }
+.char .reading { font-size: 0.75rem; opacity: 0.9; }
+.pillar.day .char:first-of-type { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.meta { display: grid; font-size: 0.8rem; color: var(--muted); }
+.hidden-stems { letter-spacing: 0.15em; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tag {
+  font-size: 0.8rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.tag.muted { border-color: var(--line); color: var(--muted); }
+
+/* ── 오행 막대 ── */
+.bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.bars li { display: grid; grid-template-columns: 56px 1fr 36px; align-items: center; gap: 10px; font-size: 0.9rem; }
+.bar-track { height: 12px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; border-radius: 999px; }
+.bar-fill.tree { background: var(--tree); }
+.bar-fill.fire { background: var(--fire); }
+.bar-fill.earth { background: var(--earth); }
+.bar-fill.metal { background: var(--metal); }
+.bar-fill.water { background: var(--water); }
+.bar-value { text-align: right; color: var(--muted); }
+
+/* ── 강약 ── */
+.lead { margin: 0 0 12px; font-size: 1.05rem; }
+.chip { display: inline-block; color: #fff; border-radius: 6px; padding: 0 8px; font-family: 'Noto Serif KR', serif; }
+.chip.tree { background: var(--tree); }
+.chip.fire { background: var(--fire); }
+.chip.earth { background: var(--earth); }
+.chip.metal { background: var(--metal); }
+.chip.water { background: var(--water); }
+
+.gauge {
+  position: relative;
+  display: grid;
+  grid-template-columns: 45fr 10fr 45fr;
+  height: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.75rem;
+}
+.zone { display: grid; place-items: center; color: var(--muted); }
+.zone.weak { background: color-mix(in srgb, var(--water) 18%, transparent); }
+.zone.mid { background: color-mix(in srgb, var(--earth) 22%, transparent); }
+.zone.strong { background: color-mix(in srgb, var(--fire) 18%, transparent); }
+.needle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--ink);
+}
+
+.groups { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 14px 0 0; text-align: center; }
+.groups dt { font-size: 0.75rem; color: var(--muted); }
+.groups dd { margin: 0; font-weight: 700; }
+
+/* ── 용신 ── */
+.yongsin { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 24px; }
+.yongsin h3 { margin-top: 0; }
+.pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { border-radius: 999px; padding: 4px 12px; color: #fff; font-size: 0.9rem; }
+.pill.tree { background: var(--tree); }
+.pill.fire { background: var(--fire); }
+.pill.earth { background: var(--earth); }
+.pill.metal { background: var(--metal); }
+.pill.water { background: var(--water); }
+.pill.outline { color: var(--muted); border: 1px solid var(--line); }
+.callout { background: var(--bg); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: 4px; }
+
+/* ── 운 ── */
+.luck-row {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 6px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(104px, 1fr);
+  gap: 8px;
+  overflow-x: auto;
+}
+.luck {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 6px;
+}
+.luck.current { border: 2px solid var(--accent); }
+.luck-title { font-size: 0.75rem; color: var(--muted); }
+.luck-ganzi { font-family: 'Noto Serif KR', serif; font-size: 1.4rem; }
+.luck-sipsin { font-size: 0.75rem; }
+.luck-rel { font-size: 0.7rem; color: var(--muted); }
+.rating { font-size: 0.75rem; font-weight: 700; }
+.rating.good { color: var(--good); }
+.rating.caution { color: var(--caution); }
+.rating.neutral { color: var(--neutral); }
+
+/* ── 리포트 ── */
+.row-between { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.row-between h2 { margin: 0; }
+details { margin-top: 12px; }
+summary { cursor: pointer; color: var(--muted); font-size: 0.9rem; }
+.report {
+  white-space: pre-wrap;
+  font-size: 0.8rem;
+  background: var(--bg);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+.footer p { margin: 4px 0; }
+
+@media (max-width: 560px) {
+  .char .hanja { font-size: 1.7rem; }
+  button.primary { width: 100%; margin-left: 0; }
+}
+
+.luck-notes { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; font-size: 0.85rem; }
+.luck-notes li { padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--bg); border-radius: 4px; }
+.luck-notes strong { margin-right: 6px; }
