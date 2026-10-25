@@ -271,3 +271,37 @@ summary { cursor: pointer; color: var(--muted); font-size: 0.9rem; }
 .luck-notes { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; font-size: 0.85rem; }
 .luck-notes li { padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--bg); border-radius: 4px; }
 .luck-notes strong { margin-right: 6px; }
+
+/* ── 궁합 ── */
+.field.place { flex: 1 1 200px; }
+.field .hint { color: var(--caution); }
+.field input[aria-invalid='true'] { border-color: var(--caution); }
+button.primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.section-title { margin: 16px 0 0; }
+
+.compat-head { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.score-ring {
+  --p: 0;
+  flex: none;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  grid-auto-flow: column;
+  align-items: baseline;
+  background:
+    radial-gradient(closest-side, var(--surface) 80%, transparent 81%),
+    conic-gradient(var(--accent) calc(var(--p) * 1%), var(--line) 0);
+}
+.score-num { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; font-weight: 700; }
+.score-unit { font-size: 0.85rem; color: var(--muted); margin-left: 2px; }
+.compat-head .lead { margin-bottom: 4px; font-size: 1.3rem; }
+.roles { margin: 0; font-size: 0.95rem; }
+
+.compat-items { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.compat-items li { border-top: 1px solid var(--line); padding-top: 10px; }
+.compat-items h3 { margin: 0; color: var(--ink); font-weight: 700; font-size: 0.95rem; }
+.compat-summary { margin: 2px 0 0; font-family: 'Noto Serif KR', serif; color: var(--accent); }
+.compat-detail { margin: 2px 0 0; font-size: 0.9rem; }
+.compat .rating { font-size: 0.9rem; }
